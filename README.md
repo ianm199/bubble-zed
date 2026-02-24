@@ -50,3 +50,20 @@ The model rebuilds automatically when you save a file.
 ## Supported frameworks
 
 Exception flow analysis supports Flask, FastAPI, and CLI scripts. Framework-specific exceptions (like `HTTPException`) are recognized and categorized appropriately.
+
+## Publishing updates
+
+This repo is registered as a submodule in [zed-extensions](https://github.com/zed-industries/extensions) under `extensions/bubble`. A canonical copy also lives in the main bubble-analysis repo at `editors/zed/`.
+
+To publish a new version:
+
+1. Make changes here and push to `main`.
+2. In your fork of `zed-extensions`, update the submodule pointer:
+   ```bash
+   cd extensions/bubble
+   git pull origin main
+   cd ../..
+   ```
+3. Bump the version in `extension.toml` here **and** in `extensions.toml` in zed-extensions (under `[bubble-lsp]`).
+4. Commit the submodule update and version bump, then open a PR against `zed-industries/extensions`.
+5. Sync any changes back to `editors/zed/` in the bubble-analysis repo to keep the two copies in lockstep.
